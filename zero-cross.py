@@ -167,21 +167,21 @@ def main():
     t = [0.002 * x for x in range(len(ecg))]
 
 
-    print "read data in ", time.time() - tm
+    # print "read data in ", time.time() - tm
     #need to filter signal
     
     ecgFIR = filterBandPassFIR(ecg)
     y = nonLinearFilter(ecgFIR)
 
 
-    print "data filtered in ", time.time() - tm
+    # print "data filtered in ", time.time() - tm
     n = len(ecg)
     m = len(ecgFIR)
 
-    print 'n = ', n
-    print 'm = ', m
-    print 'filter N = ', filterN
-    print 'filterDelay = ', filterDelay
+    # print 'n = ', n
+    # print 'm = ', m
+    # print 'filter N = ', filterN
+    # print 'filterDelay = ', filterDelay
     if plotFlag :
         plt.figure(1)
         plt.plot(t[0:n], ecg[0:n], t[filterDelay:n - (filterN - filterDelay)], ecgFIR[0:m], 'r-')
@@ -189,16 +189,16 @@ def main():
 
     #adding high-frequency seq
     z = addHFS(y)
-    print "high-frequency seq added in ", time.time() - tm
+    # print "high-frequency seq added in ", time.time() - tm
 
     D = computeFeature(z)
-    print "d computed in ", time.time() - tm
+    # print "d computed in ", time.time() - tm
 
     Th = computeTheta(D)
 
     events = getEvents(D, Th)
 
-    print "events = ", events
+    # print "events = ", events
     
 
     rPeaks = getRpeaks(events, y)
@@ -209,7 +209,7 @@ def main():
 
     
     d = (n - m) / 2 
-    print d
+    # print d
 
     
     if plotFlag :

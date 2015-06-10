@@ -126,7 +126,7 @@ def main():
     t = [0.002 * x for x in range(len(ecg))]
 
 
-    print "read data in ", time.time() - tm
+    # print "read data in ", time.time() - tm
     #need to filter signal
     
     ecgFIR_1 = filterBandPassFIR(ecg, 'filter/FP_FIR_1.in')
@@ -135,14 +135,14 @@ def main():
     ecgFIR_4 = filterBandPassFIR(ecg, 'filter/FP_FIR_4.in')
     ecgFIR = [[], ecgFIR_1, ecgFIR_2, ecgFIR_3, ecgFIR_4]
 
-    print "data filtered in ", time.time() - tm
+    # print "data filtered in ", time.time() - tm
     n = len(ecg)
     m = len(ecgFIR_1)
 
-    print 'n = ', n
-    print 'm = ', m
-    print 'filter N = ', filterN
-    print 'filterDelay = ', filterDelay
+    # print 'n = ', n
+    # print 'm = ', m
+    # print 'filter N = ', filterN
+    # print 'filterDelay = ', filterDelay
     if plotFlag :
         plt.figure(1)
         plt.plot(t[0:n], ecg[0:n], t[filterDelay:n - (filterN - filterDelay)], ecgFIR_4[0:m], 'r-')
@@ -152,7 +152,7 @@ def main():
     P_2 = getFeature(ecgFIR, [1, 2, 3, 4])
     P_3 = getFeature(ecgFIR, [2, 3, 4])
 
-    print "len P_1 == ", len(P_1)
+    # print "len P_1 == ", len(P_1)
 
     # print "P_1 = ", P_1
     if plotFlag :

@@ -86,7 +86,7 @@ def getQRS(ecg):
 
 	#qrs = sorted(qrs, key = lambda x: x[1])
 
-	print "qrs regions  = ", qrs
+	# print "qrs regions  = ", qrs
 	if qrs[0][1] < 10 :
 		return qrs[1:]
 	else :
@@ -151,10 +151,10 @@ def main():
 	#	plt.plot(t[:n], ecg[:n])
 
 
-	print "read data in ", time.time() - tm
+	# print "read data in ", time.time() - tm
 	#need to filter signal
 	ecgFIR = filterBandPassFIR(ecg)
-	print "data filtered in ", time.time() - tm
+	# print "data filtered in ", time.time() - tm
 	n = len(ecg)
 	m = len(ecgFIR)
 
@@ -170,16 +170,16 @@ def main():
 	m = len(ecgFIR)
 	
 	qrs = getQRS(ecgFIR)
-	print "found qrs in ", time.time() - tm
+	# print "found qrs in ", time.time() - tm
 	
 	rPeaks = getRPeaks(ecg, qrs) 	
 	
-	print "found R-peaks in ", time.time() - tm
+	# print "found R-peaks in ", time.time() - tm
 	
 	
 	rPeaks = filterRPeaks(ecg, rPeaks)
 
-	print "fitered R-peaks in ", time.time() - tm
+	# print "fitered R-peaks in ", time.time() - tm
 	
 	print "R-peaks = ", rPeaks
 	
