@@ -9,11 +9,11 @@ import math
 import matplotlib.pyplot as plt
 
 
-DATA_PATH = 'data/data_2.in'
+DATA_PATH = 'data/data_1.in'
 FILTER_PATH = 'filter/FIR_kernel_27.in'
 
 
-n = 20000
+n = 6000
 lambda_k = 0.99
 c_k = 4
 lambda_D = 0.99
@@ -32,7 +32,7 @@ def sign(x):
 def readECG():
     lines = open(DATA_PATH,'r').readlines()
     ecg = map(lambda x: float(x) , lines) #* 255
-    '''
+    
     baseline = 0
     c = 0
     for e in ecg:
@@ -41,7 +41,7 @@ def readECG():
             c += 1
     baseline /= c
     ecg = map(lambda x: x if x != -10000000 else baseline, ecg)
-    ''' 
+    
     '''
     a = min(ecg)
     b = max(ecg)
@@ -215,19 +215,19 @@ def main():
     if plotFlag :
 
 
-        plt.figure(2)
+        #plt.figure(2)
         #plt.plot(t[0:n], ecg[0:n],t[d : n - d - 1], z[0:m], 'r-')
         #plt.plot(t[0:m], y[0:m],t[0 : m - 1], D[0:m - 1], 'r-')
-        plt.plot(t[0:len(D)],Th[0:len(D)], t[0 : len(D)], D, 'r-')
+        #plt.plot(t[0:len(D)],Th[0:len(D)], t[0 : len(D)], D, 'r-')
         #plt.plot(t[0:len(D)],events,'r-')
         
         plt.figure(3)
         #plt.plot(t[:1000], ecg[:1000])
-        tt = map(lambda x: x * 0.002, rPeaks);
+        tt = map(lambda x: (x + filterDelay) * 0.002, rPeaks);
         d = []
         for item in rPeaks :
-            d.append(y[item])
-        plt.plot(t[:m], y[:m],'b-', tt, d, 'ro')
+            d.append(ecg[item + filterDelay])
+        plt.plot(t[:m], ecg[:m],'b-', tt, d, 'ro')
 
 
     plt.show()
