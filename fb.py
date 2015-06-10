@@ -8,6 +8,8 @@ import sys
 import math
 import matplotlib.pyplot as plt
 
+DATA_PATH = 'data/data_1.in'
+
 n = 10000
 
 filterDelay = 14
@@ -22,8 +24,7 @@ def sign(x):
         return 1
 
 def readECG():
-    lines = open('data/Contactless_II_1.in','r').readlines()
-    # lines = open('data/Contact_II_10min.txt','r').readlines()
+    lines = open(DATA_PATH,'r').readlines()
     
     #lines = map(lambda x: str.split(str(x))[2], lines)
 
@@ -128,10 +129,10 @@ def main():
     print "read data in ", time.time() - tm
     #need to filter signal
     
-    ecgFIR_1 = filterBandPassFIR(ecg, 'FP_FIR_1.in')
-    ecgFIR_2 = filterBandPassFIR(ecg, 'FP_FIR_2.in')
-    ecgFIR_3 = filterBandPassFIR(ecg, 'FP_FIR_3.in')
-    ecgFIR_4 = filterBandPassFIR(ecg, 'FP_FIR_4.in')
+    ecgFIR_1 = filterBandPassFIR(ecg, 'filter/FP_FIR_1.in')
+    ecgFIR_2 = filterBandPassFIR(ecg, 'filter/FP_FIR_2.in')
+    ecgFIR_3 = filterBandPassFIR(ecg, 'filter/FP_FIR_3.in')
+    ecgFIR_4 = filterBandPassFIR(ecg, 'filter/FP_FIR_4.in')
     ecgFIR = [[], ecgFIR_1, ecgFIR_2, ecgFIR_3, ecgFIR_4]
 
     print "data filtered in ", time.time() - tm

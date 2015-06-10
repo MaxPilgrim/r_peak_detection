@@ -9,6 +9,10 @@ import math
 import matplotlib.pyplot as plt
 
 
+DATA_PATH = 'data/data_2.in'
+FILTER_PATH = 'filter/FIR_kernel_27.in'
+
+
 n = 20000
 lambda_k = 0.99
 c_k = 4
@@ -26,8 +30,7 @@ def sign(x):
         return 1
 
 def readECG():
-    lines = open('data/Contactless_II_3.in','r').readlines()
-    #lines = open('data/Contact_II_10min.txt','r').readlines()
+    lines = open(DATA_PATH,'r').readlines()
     ecg = map(lambda x: float(x) , lines) #* 255
     '''
     baseline = 0
@@ -59,7 +62,7 @@ def readECG():
     return ecg[0:n]
 
 def filterBandPassFIR(ecg):
-    ker = open('FIR_kernel_27.in','r').readlines()
+    ker = open(FILTER_PATH,'r').readlines()
     ker = map(str.strip, ker)
     ker = map(float, ker)
     global filterN 
